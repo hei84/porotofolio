@@ -61,8 +61,12 @@ const ModeBanner = () => {
     return (
       <div className="banner info" role="status">
         <p>
-          Static portfolio mode: backend is not connected, so the content shown here is the
-          curated version.
+          Static portfolio mode: backend is not connected yet, so this site is running from a
+          curated snapshot of my skills, projects, and content.
+        </p>
+        <p>
+          Once the API is live, this banner will switch to <strong>Live mode</strong> and projects
+          and testimonials will be fetched in real time.
         </p>
       </div>
     );
