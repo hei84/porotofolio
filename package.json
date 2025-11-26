@@ -9,13 +9,17 @@
     "client": "cd client && npm start",
     "install-all": "npm install && cd server && npm install && cd ../client && npm install",
     "build": "cd client && npm install && npm run build",
-    "start": "cd server && npm start"
+    "start": "cd server && npm start",
+    "netlify:dev": "npx netlify dev",
+    "netlify:deploy": "npx netlify deploy",
+    "netlify:deploy:prod": "npx netlify deploy --prod"
   },
   "keywords": ["portfolio", "react", "nodejs", "fullstack"],
   "author": "Nigusu Wario Hei",
   "license": "MIT",
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "netlify-cli": "^17.0.0"
   }
 }
 
