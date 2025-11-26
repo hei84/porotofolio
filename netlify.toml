@@ -1,0 +1,14 @@
+[build]
+  command = "npm run build"
+  publish = "client/build"
+
+  # Optional but recommended: use a modern Node version
+  [build.environment]
+    NODE_VERSION = "18"
+
+# If you ever add client-side routing with React Router, this
+# will ensure all routes serve index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
