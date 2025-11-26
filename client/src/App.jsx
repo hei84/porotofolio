@@ -30,7 +30,8 @@ import usePortfolioContent from './hooks/usePortfolioContent';
 import {
   fetchProjects,
   fetchTestimonials,
-  submitContactForm
+  submitContactForm,
+  hasApi
 } from './services/api';
 
 const socialLinks = [
@@ -96,6 +97,14 @@ const App = () => {
   };
 
   useEffect(() => {
+    if (!hasApi) {
+      setRemoteStatus({
+        projects: { loading: false, error: null },
+        testimonials: { loading: false, error: null }
+      });
+      return undefined;
+    }
+
     const loadRemoteCollections = async () => {
       try {
         const [projectsResponse, testimonialsResponse] = await Promise.all([

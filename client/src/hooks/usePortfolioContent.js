@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { experience, services, skills } from '../data/content';
-import { fetchPortfolioContent } from '../services/api';
+import { fetchPortfolioContent, hasApi } from '../services/api';
 
 const defaultContent = {
   services,
@@ -12,9 +12,15 @@ const defaultContent = {
 
 const usePortfolioContent = () => {
   const [content, setContent] = useState(defaultContent);
-  const [status, setStatus] = useState({ loading: true, error: null });
+  const [status, setStatus] = useState({ loading: hasApi, error: null });
 
   useEffect(() => {
+    if (!hasApi) {
+      // No backend configured (e.g. Netlify static deploy) – keep defaults
+      setStatus({ loading: false, error: null });
+      return undefined;
+    }
+
     let mounted = true;
 
     const loadContent = async () => {
