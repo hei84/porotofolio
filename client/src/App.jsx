@@ -54,6 +54,27 @@ const SectionHeader = ({ eyebrow, title, description }) => (
   </div>
 );
 
+const ModeBanner = () => {
+  if (process.env.NODE_ENV === 'development') return null;
+
+  if (!hasApi) {
+    return (
+      <div className="banner info" role="status">
+        <p>
+          Static portfolio mode: backend is not connected, so the content shown here is the
+          curated version.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="banner success" role="status">
+      <p>Live mode: content and projects are powered by the backend API.</p>
+    </div>
+  );
+};
+
 const App = () => {
   const sectionIds = navLinks.map(link => link.id);
   const activeId = useScrollSpy(sectionIds);
@@ -185,6 +206,7 @@ const App = () => {
 
   return (
     <div className="app-shell">
+      <ModeBanner />
       <header className="site-header">
         <div className="container nav-wrapper">
           <a href="#home" className="brand">
@@ -428,6 +450,24 @@ const App = () => {
                     <span key={practice}>{practice}</span>
                   ))}
                 </div>
+              </div>
+              <div className="card">
+                <h3>Core Stack</h3>
+                <div className="chips">
+                  {(content.skills?.core || []).map(skill => (
+                    <span key={skill}>{skill}</span>
+                  ))}
+                </div>
+                <p className="muted">Technologies I use most frequently in projects.</p>
+              </div>
+              <div className="card">
+                <h3>Tooling & Concepts</h3>
+                <div className="chips">
+                  {(content.skills?.tooling || []).map(tool => (
+                    <span key={tool}>{tool}</span>
+                  ))}
+                </div>
+                <p className="muted">Ecosystem tools and practices I rely on when shipping software.</p>
               </div>
             </div>
           </div>
