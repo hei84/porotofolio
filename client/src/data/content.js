@@ -1,18 +1,8 @@
 export const navLinks = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
-  { id: 'academic', label: 'Academic' },
-  { id: 'competitive', label: 'Competitive' },
   { id: 'skills', label: 'Skills' },
-  { id: 'uiux', label: 'UI/UX' },
-  { id: 'feature-lab', label: 'Features' },
-  { id: 'cybersecurity', label: 'Security' },
-  { id: 'communities', label: 'Communities' },
   { id: 'projects', label: 'Projects' },
-  { id: 'certifications', label: 'Certifications' },
-  { id: 'achievements', label: 'Achievements' },
-  { id: 'goals', label: 'Goals' },
-  { id: 'testimonials', label: 'Testimonials' },
   { id: 'contact', label: 'Contact' }
 ];
 
