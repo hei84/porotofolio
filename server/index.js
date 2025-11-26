@@ -1,6 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
+const helmet = require('helmet');
+const morgan = require('morgan');
+const compression = require('compression');
+const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
 const { portfolioContent, projects, testimonials } = require('./data/portfolio');
@@ -10,8 +14,22 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
+app.use(helmet());
+app.use(compression());
+
+if (process.env.NODE_ENV !== 'test') {
+  app.use(morgan('combined'));
+}
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+const contactLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 50, // limit each IP to 50 requests per windowMs
+  standardHeaders: true,
+  legacyHeaders: false
+});
 
 // Email transporter configuration
 const transporter = nodemailer.createTransport({
@@ -28,7 +46,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // Contact form endpoint
-app.post('/api/contact', async (req, res) => {
+app.post('/api/contact', contactLimiter, async (req, res) => {
   try {
     const { name, email, message, subject } = req.body;
 
