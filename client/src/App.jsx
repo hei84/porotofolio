@@ -84,7 +84,7 @@ const App = () => {
     if (storedTheme && storedTheme !== theme) {
       setTheme(storedTheme);
     }
-  }, []);
+  }, [theme]);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
