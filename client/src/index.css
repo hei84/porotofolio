@@ -291,6 +291,10 @@ h1 {
   background: rgba(255, 255, 255, 0.02);
 }
 
+[data-theme='light'] .section.tinted {
+  background: rgba(15, 23, 42, 0.03);
+}
+
 .section-heading {
   display: flex;
   flex-direction: column;
@@ -679,7 +683,7 @@ h1 {
 .site-footer {
   border-top: 1px solid var(--border);
   padding: 32px 0;
-  background: #04050a;
+  background: var(--page-bg);
 }
 
 .footer-grid {
@@ -702,7 +706,7 @@ h1 {
   padding: 14px 18px;
   border-radius: 12px;
   border: 1px solid var(--border);
-  background: rgba(5, 6, 10, 0.92);
+  background: var(--card-bg);
   font-size: 14px;
 }
 
